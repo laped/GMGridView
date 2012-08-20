@@ -57,6 +57,13 @@ typedef enum
     GMGridViewItemAnimationScroll = 1<<7 // scroll to the item before showing the animation
 } GMGridViewItemAnimation;
 
+@interface CustomCGSize : NSObject
+
+@property CGFloat width;
+@property CGFloat height;
+
+@end
+
 //////////////////////////////////////////////////////////////
 #pragma mark Interface GMGridView
 //////////////////////////////////////////////////////////////
@@ -123,7 +130,7 @@ typedef enum
 @required
 // Populating subview items 
 - (NSInteger)numberOfItemsInGMGridView:(GMGridView *)gridView;
-- (CGSize)GMGridView:(GMGridView *)gridView sizeForItemsInInterfaceOrientation:(UIInterfaceOrientation)orientation;
+- (CustomCGSize *)GMGridView:(GMGridView *)gridView sizeForItemsInInterfaceOrientation:(UIInterfaceOrientation)orientation;
 - (GMGridViewCell *)GMGridView:(GMGridView *)gridView cellForItemAtIndex:(NSInteger)index;
 
 @optional

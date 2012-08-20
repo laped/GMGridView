@@ -36,6 +36,12 @@ static const NSInteger kTagOffset = 50;
 static const CGFloat kDefaultAnimationDuration = 0.3;
 static const UIViewAnimationOptions kDefaultAnimationOptions = UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionAllowUserInteraction;
 
+@implementation CustomCGSize
+
+@synthesize width;
+@synthesize height;
+
+@end
 
 //////////////////////////////////////////////////////////////
 #pragma mark - Private interface
@@ -304,7 +310,8 @@ static const UIViewAnimationOptions kDefaultAnimationOptions = UIViewAnimationOp
         
         // Updating all the items size
         
-        CGSize itemSize = [self.dataSource GMGridView:self sizeForItemsInInterfaceOrientation:[[UIApplication sharedApplication] statusBarOrientation]];
+        CustomCGSize *itemSizeCustom = [self.dataSource GMGridView:self sizeForItemsInInterfaceOrientation:[[UIApplication sharedApplication] statusBarOrientation]];
+        CGSize itemSize = CGSizeMake(itemSizeCustom.width, itemSizeCustom.height);
         
         if (!CGSizeEqualToSize(_itemSize, itemSize)) 
         {
@@ -1512,7 +1519,10 @@ static const UIViewAnimationOptions kDefaultAnimationOptions = UIViewAnimationOp
     [self setSubviewsCacheAsInvalid];
     
     NSUInteger numberItems = [self.dataSource numberOfItemsInGMGridView:self];    
-    _itemSize = [self.dataSource GMGridView:self sizeForItemsInInterfaceOrientation:[[UIApplication sharedApplication] statusBarOrientation]];
+    CustomCGSize *itemSize = [self.dataSource GMGridView:self sizeForItemsInInterfaceOrientation:[[UIApplication sharedApplication] statusBarOrientation]];
+    NSLog(@"reloadData - sizeForItems - width: %f - height: %f", itemSize.width, itemSize.height);
+    _itemSize = CGSizeMake(itemSize.width, itemSize.height);
+    
     _numberTotalItems = numberItems;
     
     [self recomputeSizeAnimated:NO];
