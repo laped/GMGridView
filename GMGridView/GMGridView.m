@@ -1520,7 +1520,6 @@ static const UIViewAnimationOptions kDefaultAnimationOptions = UIViewAnimationOp
     
     NSUInteger numberItems = [self.dataSource numberOfItemsInGMGridView:self];    
     CustomCGSize *itemSize = [self.dataSource GMGridView:self sizeForItemsInInterfaceOrientation:[[UIApplication sharedApplication] statusBarOrientation]];
-    NSLog(@"reloadData - sizeForItems - width: %f - height: %f", itemSize.width, itemSize.height);
     _itemSize = CGSizeMake(itemSize.width, itemSize.height);
     
     _numberTotalItems = numberItems;
