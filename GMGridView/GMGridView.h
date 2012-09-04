@@ -93,7 +93,7 @@ typedef enum
 @property (nonatomic) BOOL showFullSizeViewWithAlphaWhenTransforming; // Default is YES - not working right now
 @property (nonatomic) BOOL enableEditOnLongPress;                     // Default is NO
 @property (nonatomic) BOOL disableEditOnEmptySpaceTap;                // Default is NO
-
+@property (nonatomic, strong) UIView *gridHeaderView;                 // Default is nil
 @property (nonatomic, readonly) UIScrollView *scrollView __attribute__((deprecated)); // The grid now inherits directly from UIScrollView
 
 // Reusable cells
